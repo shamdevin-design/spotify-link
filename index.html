@@ -4,6 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Redirecting to Spotify | Tu Ez</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '300584779454713'); 
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=300584779454713&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <script>
     // Auto-redirect to Spotify app, fallback to web
     window.onload = function() {
@@ -15,6 +34,9 @@
       iframe.style.display = "none";
       iframe.src = appLink;
       document.body.appendChild(iframe);
+
+      // Fire custom Pixel event before redirect
+      fbq('trackCustom', 'SpotifyRedirect');
 
       // Fallback after 1.5s
       setTimeout(function() {
@@ -28,7 +50,8 @@
 
   <!-- Loading Message -->
   <div class="flex flex-col items-center">
-    <img src="tuez-cover.jpg" alt="Tu Ez" class="w-32 h-32 rounded-full border-4 border-green-400 shadow-lg mb-6 animate-pulse" />
+    <!-- GitHub Pages safe image path -->
+    <img src="./tuez-cover.jpg" alt="Tu Ez" class="w-32 h-32 rounded-full border-4 border-green-400 shadow-lg mb-6 animate-pulse" />
     <h1 class="text-2xl font-bold mb-4">Opening Spotify…</h1>
     <p class="text-green-300">If it doesn’t open, <a href="https://open.spotify.com/track/2AcOxqgkyOXoiDVriDCPDk" class="underline">click here</a>.</p>
   </div>
